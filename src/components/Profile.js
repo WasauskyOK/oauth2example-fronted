@@ -46,6 +46,7 @@ export default class Profile extends Component {
                         // {
                         //  return  window.location.href='/';
                         // }
+                        console.log("htop-reponse ",responseJson)
                         if('user' in responseJson && 'success' in  responseJson)
                         {
                                 await  window.localStorage.setItem('autorizado','go');
@@ -59,7 +60,7 @@ export default class Profile extends Component {
                         }
                         })
                       .catch(error => {
-                        console.log(error);
+                        console.log("errortop ",error);
                       });
                 }
                 else{
