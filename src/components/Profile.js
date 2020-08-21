@@ -17,11 +17,11 @@ export default function Profile(){
                 if(window.localStorage.getItem('peticiongo')==='ok'){
                         fetch("https://oauth2examplefirst.herokuapp.com/auth/login/success", {
                                 method: "GET",
-                                //credentials: "include",
+                                credentials: "include",
                                 headers: {
                                   //Accept: "application/json",
-                                  "Content-Type": "application/json"
-                                 // "Access-Control-Allow-Credentials": true
+                                  "Content-Type": "application/json",
+                                  "Access-Control-Allow-Credentials": true
                                 }
                               }).then(response => {
                                 if (response.status === 200) return response.json();
