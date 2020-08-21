@@ -12,6 +12,7 @@ export default function Profile(){
         {
               await setData({...data,success:change})
         }
+        
         useEffect(()=>{
                 if(window.localStorage.getItem('peticiongo')==='ok'){
                         fetch("https://oauth2examplefirst.herokuapp.com/auth/login/success", {
