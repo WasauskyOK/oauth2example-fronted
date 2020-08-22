@@ -28,7 +28,7 @@ export default function Profile(){
                                 
                                 // }
                               }).then((response) => {
-                                if (response.status === 200) return response.json();
+                                if (response.status === 200) return response;
                                 throw new Error("failed to authenticate user");
                               })
                               .then(async  ({data:responseJson}) => {      
