@@ -27,6 +27,12 @@ export default function Profile(){
                                 //   "Access-Control-Allow-Credentials": true
                                 
                                 // }
+                                
+                                headers: {
+                                        'accept':'application/json', //this prevents passport redirecting to login pages
+                                        "Access-Control-Allow-Origin": "https://auth2.netlify.app"
+                                        //'X-CSRF-TOKEN': laravel.csrfToken
+                                    },
                               }).then((response) => {
                                 if (response.status === 200) return response;
                                 throw new Error("failed to authenticate user");
