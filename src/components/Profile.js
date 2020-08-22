@@ -17,12 +17,12 @@ export default function Profile(){
                 if(window.localStorage.getItem('peticiongo')==='ok'){
                         fetch("https://oauth2examplefirst.herokuapp.com/auth/login/success", {
                                 method: "GET",
-                                credentials: "include",
+                                //credentials: "include",
                                 headers: {
                                   "Accept": "application/json",
                                   "Content-Type": "application/json",
                                   //"Access-Control-Allow-Origin":"https://auth.choquesaurus.com",
-                                  "Access-Control-Allow-Credentials": true
+                                  //"Access-Control-Allow-Credentials": true
                                 
                                 }
                               }).then(response => {
