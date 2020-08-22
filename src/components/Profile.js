@@ -21,7 +21,7 @@ export default function Profile(){
                                 headers: {
                                   "Accept": "application/json",
                                   "Content-Type": "application/json",
-                                  "Access-Control-Allow-Origin":"https://auth.choquesaurus.com",
+                                  //"Access-Control-Allow-Origin":"https://auth.choquesaurus.com",
                                   "Access-Control-Allow-Credentials": true
                                 
                                 }
