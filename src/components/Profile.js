@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import NavProfile from '../components/Nav/NavProfile';
-
+import axios from 'axios'
 export default function Profile(){
         const [data,setData]= useState({
                 success:true,
@@ -15,21 +15,23 @@ export default function Profile(){
 
         useEffect(()=>{
                 if(window.localStorage.getItem('peticiongo')==='ok'){
-                        fetch("https://oauth2examplefirst.herokuapp.com/auth/login/success", {
+                        axios({
                                 method: "GET",
-                                credentials: "include",
-                                headers: {
-                                  "Accept": "application/json",
-                                  "Content-Type": "application/json",
-                                  //"Access-Control-Allow-Origin":"https://auth.choquesaurus.com",
-                                  "Access-Control-Allow-Credentials": true
+                                url:"https://oauth2examplefirst.herokuapp.com/auth/login/success",
+                                withCredentials:true,
+                               // credentials: "include",
+                                // headers: {
+                                //   "Accept": "application/json",
+                                //   "Content-Type": "application/json",
+                                //   //"Access-Control-Allow-Origin":"https://auth.choquesaurus.com",
+                                //   "Access-Control-Allow-Credentials": true
                                 
-                                }
-                              }).then(response => {
+                                // }
+                              }).then((response) => {
                                 if (response.status === 200) return response.json();
                                 throw new Error("failed to authenticate user");
                               })
-                              .then(async  (responseJson) => {      
+                              .then(async  ({data:responseJson}) => {      
                                 //window.localStorage.setItem('autorization','ok');
         
                                 // if(window.localStorage.getItem('autorization')==='no')
