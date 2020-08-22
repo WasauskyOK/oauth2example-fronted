@@ -21,8 +21,9 @@ export default function Profile(){
                                 headers: {
                                   "Accept": "application/json",
                                   "Content-Type": "application/json",
-                                  "Access-Control-Allow-Origin":"*",
+                                  "Access-Control-Allow-Origin":"https://auth.choquesaurus.com",
                                   "Access-Control-Allow-Credentials": true
+                                
                                 }
                               }).then(response => {
                                 if (response.status === 200) return response.json();
