@@ -1,9 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import NavSession from  './Nav/NavSession';
 import {Box, Card, CardActionArea, CardActions, CardMedia, CardContent, Button} from '@material-ui/core';
 import {makeStyles} from  '@material-ui/core/styles';
 import {MailOutlineRounded,Facebook,GitHub,LinkedIn} from '@material-ui/icons';
-
+import Alert from '@material-ui/lab/Alert'
 
 const IMAGEGOOGLE='https://s3-us-west-2.amazonaws.com/devcodepro/media/blog/la-fundacion-de-google.png';
 const IMAGEFACEBOOK='https://cdn-3.expansion.mx/d2/d7/d4788bdf40839f3438854f1eb8a2/fb-hero-image-001.jpeg';
@@ -22,7 +22,23 @@ const useStyles=makeStyles({
     }
 });
 
-export default ()=>{    
+export default ()=>{   
+    // useEffect(()=>{
+    //   fetch("https://oauth2examplefirst.herokuapp.com/auth/login/success", {
+    //   method: "GET",
+    //   credentials: "include",
+    //   headers: {
+    //     "Accept": "*/*",
+    //     //"Content-Type": "application/json",
+    //     "Access-Control-Allow-Credentials": true
+    //     //"Access-Control-Allow-Origin":"*"
+    // }
+    // })
+    // .then(data=>data.json())
+    // .then(data=>console.log(data))
+    // .catch(error=>console.log(error))
+
+    // },[]); 
     const GoAuth2=()=>{
         // const request = await fetch('http://localhost:3000/google');
         // const data =  await request.json();
@@ -48,11 +64,19 @@ export default ()=>{
         return (
            <>
                 <NavSession/>
-               
-               {
+                <Alert severity="warning">
+                    Si no funciona en tu navegador chrome o chromium, habilitar lo siguiente : <br/>
+                    Ir o buscar en la barra de dirrecciones <strong>chrome://flags/</strong> , buscar la palabra clave samesite , desabilitar las opciones y darle click en Relunch (Lo que sucede que por defecto en los
+                    navegadores modernos el atributo samesite es "Lax" y no permitira el origen cruzado , aunque desde el backend respondan las cookies configuradas con el atributo "none" no funcionara )
+                    <br/>
+                    * No es necesario hacer estos pasos en Mozilla firefox 
+                </Alert>
+                <br/>
+                <br/>
+               {/* {
                   window.localStorage.getItem('autorizado')===null?"":window.location.href='/profile'
                 }
-          
+           */}
               
             
                <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="space-evenly" alignItems="space-evenly" className={classes.BoxFlex}>

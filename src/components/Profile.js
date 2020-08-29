@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import NavProfile from '../components/Nav/NavProfile';
-import axios from 'axios'
+//import axios from ''
 export default function Profile(){
         const [data,setData]= useState({
                 success:true,
@@ -15,29 +15,22 @@ export default function Profile(){
 
         useEffect(()=>{
                 if(window.localStorage.getItem('peticiongo')==='ok'){
-                        axios({
+                        fetch("https://oauth2examplefirst.herokuapp.com/auth/login/success", {
                                 method: "GET",
-                                url:"https://oauth2examplefirst.herokuapp.com/auth/login/success",
-                                withCredentials:true,
-                               // credentials: "include",
-                                // headers: {
-                                //   "Accept": "application/json",
-                                //   "Content-Type": "application/json",
-                                //   //"Access-Control-Allow-Origin":"https://auth.choquesaurus.com",
-                                //   "Access-Control-Allow-Credentials": true
-                                
-                                // }
-                                
+                                credentials: "include",
                                 headers: {
-                                        'accept':'application/json', //this prevents passport redirecting to login pages
-                                        "Access-Control-Allow-Origin": "https://auth2.netlify.app"
-                                        //'X-CSRF-TOKEN': laravel.csrfToken
-                                    },
-                              }).then((response) => {
-                                if (response.status === 200) return response;
+                                        "Accept": "*/*",
+                                        //"Content-Type": "application/json",
+                                        "Access-Control-Allow-Credentials": true
+                                        //"Access-Control-Allow-Origin":"*"
+                                }
+                                })
+                              .then(response => {
+                                      console.log(response)
+                                if (response.status === 200) return response.json();
                                 throw new Error("failed to authenticate user");
                               })
-                              .then(async  ({data:responseJson}) => {      
+                              .then(async  (responseJson) => {      
                                 //window.localStorage.setItem('autorization','ok');
         
                                 // if(window.localStorage.getItem('autorization')==='no')
