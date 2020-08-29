@@ -60,7 +60,7 @@ export default function Profile(){
                                 setData({...data,success:false}) 
                         }
 
-        },[data])
+        },[])
         // (async()=>{
                 //         const  request=await fetch('http://localhost:5000/auth/login/success',{
                 //                         method: "GET",
