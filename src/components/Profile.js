@@ -26,7 +26,7 @@ export default function Profile(){
                                 }
                                 })
                               .then(response => {
-                                      console.log(response)
+                                console.log("transform")
                                 if (response.status === 200) return response.json();
                                 throw new Error("failed to authenticate user");
                               })
@@ -37,7 +37,7 @@ export default function Profile(){
                                 // {
                                 //  return  window.location.href='/';
                                 // }
-                                console.log("htop-reponse ",responseJson)
+                                console.log("htop-reponse ")
                                 if('user' in responseJson && 'success' in  responseJson)
                                 {
                                         window.localStorage.setItem('autorizado','go');
