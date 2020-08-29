@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import NavSession from  './Nav/NavSession';
 import {Box, Card, CardActionArea, CardActions, CardMedia, CardContent, Button} from '@material-ui/core';
 import {makeStyles} from  '@material-ui/core/styles';
