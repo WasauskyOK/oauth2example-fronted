@@ -40,7 +40,7 @@ export default function Profile(){
                                 console.log("htop-reponse ",responseJson)
                                 if('user' in responseJson && 'success' in  responseJson)
                                 {
-                                        await  window.localStorage.setItem('autorizado','go');
+                                        window.localStorage.setItem('autorizado','go');
                                         const {success,user:{_id,username,photo}}=responseJson;
                                         await setData({
                                                 ...data,
@@ -60,7 +60,7 @@ export default function Profile(){
                                 setData({...data,success:false}) 
                         }
 
-        },[...data])
+        },[data.photo,data.success,data.id,data.username])
         // (async()=>{
                 //         const  request=await fetch('http://localhost:5000/auth/login/success',{
                 //                         method: "GET",
