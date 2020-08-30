@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import NavProfile from '../components/Nav/NavProfile';
 //import axios from ''
 export default function Profile(){
+   
         const [data,setData]= useState({
                 success:true,
                 id:"",
@@ -16,7 +17,7 @@ export default function Profile(){
         useEffect(()=>{
                 
                 async function Fetching(){
-                        //                if(window.localStorage.getItem('peticiongo')==='ok'){
+                                       if(window.localStorage.getItem('peticiongo')==='ok'){
                                                 const request=await  fetch("https://oauth2examplefirst.herokuapp.com/auth/login/success", {credentials: "include"});
                                                 let data_request=request.status === 200? await request.json(): "failed to authenticate user";
                                                 console.log(data_request)
@@ -24,20 +25,21 @@ export default function Profile(){
                                                 {
                                                         window.localStorage.setItem('autorizado','go');
                                                         const {success,user:{_id,username,photo}}=data_request;
-                                                        setData({
-                                                                ...data,
+                                                        setData({                                                                
                                                                 success,
                                                                 id:_id,
                                                                 username,
                                                                 photo
                                                         });
                                                 }     
-                                        // }
-                                        // else{
-                                        //         setData({...data,success:false}) 
-                                        // }
+                                        }
+                                        else{
+                                                setData({                                                                
+                                                        success:false
+                                                });
+                                        }
                                 }
-                Fetching()
+                Fetching();
                 
                 // if(window.localStorage.getItem('peticiongo')==='ok'){
                 //         fetch("https://oauth2examplefirst.herokuapp.com/auth/login/success", {
@@ -79,15 +81,16 @@ export default function Profile(){
                 //                 setData({...data,success:false}) 
                 //         }
 
-        },[data])
+        },[]);
     
 
                         return (
                                 <div>
-                                <NavProfile changeState={changeState} photo={data.photo}/>
                                 {
                                         data.success?<></>:window.location.href='/'
                                 }
+                                <NavProfile changeState={changeState} photo={data.photo}/>
+                                
                                
                                 {/* <NavProfile/>
                                 {
