@@ -35,7 +35,10 @@ export default function Profile(){
                                         }
                                         else{
                                                 setData({                                                                
-                                                        success:false
+                                                        success:false,
+                                                        id:"",
+                                                        username:"",
+                                                        photo:""
                                                 });
                                         }
                                 }
