@@ -8,73 +8,79 @@ export default function Profile(){
                 username:"",
                 photo:""
         })
-        async function changeState(change)
+         function changeState(change)
         {
-              await setData({...data,success:change})
+                setData({...data,success:change})
         }
 
         useEffect(()=>{
-                if(window.localStorage.getItem('peticiongo')==='ok'){
-                        fetch("https://oauth2examplefirst.herokuapp.com/auth/login/success", {
-                                method: "GET",
-                                credentials: "include",
-                                headers: {
-                                        "Accept": "*/*",
-                                        //"Content-Type": "application/json",
-                                        "Access-Control-Allow-Credentials": true
-                                        //"Access-Control-Allow-Origin":"*"
+                
+                async function Fetching(){
+                        //                if(window.localStorage.getItem('peticiongo')==='ok'){
+                                                const request=await  fetch("https://oauth2examplefirst.herokuapp.com/auth/login/success", {credentials: "include"});
+                                                let data_request=request.status === 200? await request.json(): "failed to authenticate user";
+                                                console.log(data_request)
+                                                if('user' in data_request && 'success' in  data_request)
+                                                {
+                                                        window.localStorage.setItem('autorizado','go');
+                                                        const {success,user:{_id,username,photo}}=data_request;
+                                                        setData({
+                                                                ...data,
+                                                                success,
+                                                                id:_id,
+                                                                username,
+                                                                photo
+                                                        });
+                                                }     
+                                        // }
+                                        // else{
+                                        //         setData({...data,success:false}) 
+                                        // }
                                 }
-                                })
-                              .then(response => {
-                                console.log("transform")
-                                if (response.status === 200) return response.json();
-                                throw new Error("failed to authenticate user");
-                              })
-                              .then(async  (responseJson) => {      
-                                //window.localStorage.setItem('autorization','ok');
-        
-                                // if(window.localStorage.getItem('autorization')==='no')
-                                // {
-                                //  return  window.location.href='/';
-                                // }
-                                console.log("htop-reponse ")
-                                if('user' in responseJson && 'success' in  responseJson)
-                                {
-                                        window.localStorage.setItem('autorizado','go');
-                                        const {success,user:{_id,username,photo}}=responseJson;
-                                        await setData({
-                                                ...data,
-                                                success,
-                                                id:_id,
-                                                username,
-                                                photo
-                                        });
-                                }
-                                })
+                Fetching()
+                
+                // if(window.localStorage.getItem('peticiongo')==='ok'){
+                //         fetch("https://oauth2examplefirst.herokuapp.com/auth/login/success", {
+                //                 method: "GET",
+                //                 credentials: "include",
+                //                 headers: {
+                //                         "Accept": "*/*",
+                //                         //"Content-Type": "application/json",
+                //                         "Access-Control-Allow-Credentials": true
+                //                         //"Access-Control-Allow-Origin":"*"
+                //                 }
+                //                 })
+                //               .then(response => {
+                //                 console.log("transform")
+                //                 if (response.status === 200) return response.json();
+                //                 throw new Error("failed to authenticate user");
+                //               })
+                //               .then(async  (responseJson) => {      
+                //                 console.log("htop-reponse ")
+                //                 if('user' in responseJson && 'success' in  responseJson)
+                //                 {
+                //                         window.localStorage.setItem('autorizado','go');
+                //                         const {success,user:{_id,username,photo}}=responseJson;
+                //                         await setData({
+                //                                 ...data,
+                //                                 success,
+                //                                 id:_id,
+                //                                 username,
+                //                                 photo
+                //                         });
+                //                 }
+                //                 })
 
-                              .catch(error => {
-                                console.log("errortop ",error);
-                              });
-                        }
-                        else{
-                                setData({...data,success:false}) 
-                        }
+                //               .catch(error => {
+                //                 console.log("errortop ",error);
+                //               });
+                //         }
+                //         else{
+                //                 setData({...data,success:false}) 
+                //         }
 
         },[data])
-        // (async()=>{
-                //         const  request=await fetch('http://localhost:5000/auth/login/success',{
-                //                         method: "GET",
-                //                         credentials: "include",
-                //                         headers: {
-                //                           Accept: "application/json",
-                //                           "Content-Type": "application/json",
-                //                           "Access-Control-Allow-Credentials": true
-                //                         }});
-                //         const data=await  request.json();
-                        
-                //         console.log(data);
-                // })();
-               
+    
 
                         return (
                                 <div>
